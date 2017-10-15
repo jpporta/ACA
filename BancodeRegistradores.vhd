@@ -13,19 +13,17 @@ ARCHITECTURE behaviorBanco OF BancodeRegistradores IS
 BEGIN
 	PROCESS ( RegWrite , CLOCK, endereco)
 	BEGIN
-		IF CLOCK'EVENT AND CLOCK = '1' THEN
-			IF RegWrite'EVENT AND RegWrite = '1' THEN
-				CASE endereco IS 
-					WHEN "00" => 
-						Rout <= R0; 
-					WHEN "01" => 
-						Rout <= R1; 
-					WHEN "10" => 
-						Rout <= R2;   
-					WHEN "11" => 
-						Rout <= R3; 
-				END CASE; 
-			END IF;
+		IF RegWrite'EVENT AND RegWrite = '1' THEN
+			CASE endereco IS 
+				WHEN "00" => 
+					Rout <= R0; 
+				WHEN "01" => 
+					Rout <= R1; 
+				WHEN "10" => 
+					Rout <= R2;   
+				WHEN "11" => 
+					Rout <= R3; 
+			END CASE; 
 		END IF;
 	END PROCESS;
 END behaviorBanco;

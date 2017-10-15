@@ -11,7 +11,7 @@ PORT (
   Rj : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)); 
 END ula;
 
-ARCHITECTURE BehaviorUla OF ula IS 
+ARCHITECTURE Behavior OF ula IS 
  BEGIN 
  PROCESS (ClockUla , opcode)
 	BEGIN
@@ -39,4 +39,4 @@ ARCHITECTURE BehaviorUla OF ula IS
 		END IF;
  END PROCESS; 
 
-END BehaviorUla;
+END Behavior;
