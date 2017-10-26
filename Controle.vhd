@@ -6,7 +6,7 @@ ENTITY Controle IS
 PORT (clock : IN STD_LOGIC;
 		instruction : IN STD_LOGIC_VECTOR (12 DOWNTO 0);
 		R1c, R2c, R3c, R4c: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
-		Riout, Rjout: OUT STD_LOGIC_VECTOR (7 DOWNTO 0));	
+		Riout, Rjout, C: OUT STD_LOGIC_VECTOR (7 DOWNTO 0));	
 END Controle;
 
 ARCHITECTURE behaviorControle OF Controle IS 
@@ -14,7 +14,7 @@ ARCHITECTURE behaviorControle OF Controle IS
 	SIGNAL OPCODE : STD_LOGIC_VECTOR (2 DOWNTO 0);
 	SIGNAL Ric, Rjc : STD_LOGIC_VECTOR (1 DOWNTO 0);
 	SIGNAL Imediato : STD_LOGIC_VECTOR (7 DOWNTO 0);
-	SIGNAL Op1, Op2, RegAux, Res1, Res2, Res3, op3: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL Op1, Op2, RegAux, Res1, Res2, Res3, op3, op4, op5: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL ResU1, ResU2, ResU3, ResU4 : STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL ResU5, ResU6, ResU7, ResU8 : STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL Main2 : STD_LOGIC_VECTOR (7 DOWNTO 0);
@@ -73,7 +73,7 @@ BEGIN
 		Rout => Op2);
 		
 		regAux <= Op2;
-		
+
 		--Verifica se tem imediato
 		stage2: CondReg PORT MAP (
 		XchgCond=>'0',
@@ -128,6 +128,7 @@ BEGIN
 			R2 => ResU7,
 			R3 => ResU8,
 			Rout => Rjout);
+			
 			
 
 END behaviorControle;

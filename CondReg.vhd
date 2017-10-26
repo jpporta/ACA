@@ -12,21 +12,16 @@ END CondReg;
 
 ARCHITECTURE behaviorCondReg OF CondReg IS 
 BEGIN
-	PROCESS(OpcodeCond, ImediatoCond, RjCond)
+	PROCESS(OpcodeCond)
 	BEGIN
 	IF OpcodeCond /= "111" THEN
 			IF OpcodeCond = "010" OR OpcodeCond = "011" OR OpcodeCond = "101" THEN
 				ResOut <= ImediatoCond;
-			ELSE
-				ResOut <= RjCond;
-			END IF;
-		END IF;
-		
-	IF OpcodeCond /= "111" THEN
-			IF OpcodeCond = "110" AND XchgCond = '1' THEN
+			ELSE IF OpcodeCond = "110" AND XchgCond = '1' THEN
 				ResOut <= ImediatoCond;
-			ELSE
-				ResOut <= RjCond;
+				ELSE
+					ResOut <= RjCond;
+				END IF;
 			END IF;
 		END IF;
 	END PROCESS;
